@@ -1,0 +1,15 @@
+# Build
+build/
+*.o
+*.obj
+*.exe
+*.out
+
+# Qt
+*.pro.user
+*.qmake.stash
+*.qmake.cache
+
+# OS
+.DS_Store
+Thumbs.db
