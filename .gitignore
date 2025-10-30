@@ -1,15 +1,13 @@
-# Build
-build/
+# Build folders
+/build/
+/CMakeFiles/
+/CMakeCache.txt
+Makefile
+*.cmake
+
+# Binaries
+smartticket
 *.o
-*.obj
-*.exe
-*.out
 
-# Qt
-*.pro.user
-*.qmake.stash
-*.qmake.cache
-
-# OS
-.DS_Store
-Thumbs.db
+# Databases
+*.db
