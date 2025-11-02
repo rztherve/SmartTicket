@@ -4,28 +4,16 @@
 #include "mainwindow.h"
 
 int main(int argc, char *argv[]) {
-    QCoreApplication app(argc, argv);
+    QApplication app(argc, argv);
 
     Database db;
-    if (!db.open("smartticket.db") || !db.init())
+    if (!db.open("smartticket.db") || !db.init()) {
+        qWarning() << "❌ Erreur critique de base de données. Sortie.";
         return -1;
-
+    }
 
     MainWindow w(db);
     w.show();
-
-    // // Test insertion
-    // Ticket t1("Bus", 1.5);
-    // t1.save(db);
-
-    // // Lecture et affichage
-    // auto tickets = Ticket::getAll(db);
-    // for (const auto &t : tickets) {
-    //     qDebug() << "ID:" << t.id
-    //              << "| Type:" << t.type
-    //              << "| Prix:" << t.price
-    //              << "| Créé le:" << t.createdAt;
-    // }
 
     return app.exec();
 }
