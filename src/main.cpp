@@ -1,29 +1,31 @@
-#include <QCoreApplication>
+#include <QApplication>
 #include "database.h"
 #include "ticket.h"
+#include "mainwindow.h"
 
 int main(int argc, char *argv[]) {
     QCoreApplication app(argc, argv);
 
     Database db;
-    if (!db.open("smartticket.db"))
+    if (!db.open("smartticket.db") || !db.init())
         return -1;
 
-    if (!db.init())
-        return -1;
 
-    // Test insertion
-    Ticket t1("Bus", 1.5);
-    t1.save(db);
+    MainWindow w(db);
+    w.show();
 
-    // Lecture et affichage
-    auto tickets = Ticket::getAll(db);
-    for (const auto &t : tickets) {
-        qDebug() << "ID:" << t.id
-                 << "| Type:" << t.type
-                 << "| Prix:" << t.price
-                 << "| Créé le:" << t.createdAt;
-    }
+    // // Test insertion
+    // Ticket t1("Bus", 1.5);
+    // t1.save(db);
 
-    return 0;
+    // // Lecture et affichage
+    // auto tickets = Ticket::getAll(db);
+    // for (const auto &t : tickets) {
+    //     qDebug() << "ID:" << t.id
+    //              << "| Type:" << t.type
+    //              << "| Prix:" << t.price
+    //              << "| Créé le:" << t.createdAt;
+    // }
+
+    return app.exec();
 }

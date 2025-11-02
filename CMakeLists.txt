@@ -7,17 +7,19 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 # Recherche des modules Qt5 nécessaires
-find_package(Qt5 REQUIRED COMPONENTS Core Sql)
+find_package(Qt6 REQUIRED COMPONENTS Core Sql Widgets)
 
 add_executable(smartticket
     src/main.cpp
     src/database.cpp
     src/ticket.cpp
+    src/mainwindow.cpp
 )
 
 target_include_directories(smartticket PRIVATE src)
 
 target_link_libraries(smartticket
-    Qt5::Core
-    Qt5::Sql
+    Qt6::Core
+    Qt6::Sql
+    Qt6::Widgets
 )
